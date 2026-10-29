@@ -1,33 +1,33 @@
 # Orchestrator Service
 
-Node.js/Express orchestrator service for managing vehicle catalogs, agents, and customer services. Integrates with:
-- **Vehicle Domain Service** (port 8083) - Vehicle catalog management
-- **Catalog Service** (port 8082) - Agents, customers, and services catalog
+Servicio orquestador en Node.js/Express para gestionar catálogos de vehículos, agentes y servicios de clientes. Se integra con:
+- **Vehicle Domain Service** (puerto 8083) - Gestión del catálogo de vehículos
+- **Catalog Service** (puerto 8082) - Catálogo de agentes, clientes y servicios
 
-## Features
+## Características
 
-- 🚗 **Vehicle Management** - List, filter, and search vehicles
-- 👥 **Agent Management** - CRUD operations for sales agents
-- 👤 **Customer Management** - CRUD operations for customers
-- 🔧 **Service Catalog** - Manage services by category (Sales, Finance, Insurance, Post-sale)
-- 🔄 **Orchestration** - Complex operations combining multiple services
-- 📚 **Swagger/OpenAPI** - Interactive API documentation
-- 🧪 **Tests** - Unit tests with Jest
-- 🐳 **Docker** - Containerized deployment
-- 🔒 **Security** - Helmet, CORS, input validation
+- 🚗 **Gestión de vehículos** - Listado, filtrado y búsqueda de vehículos
+- 👥 **Gestión de agentes** - Operaciones CRUD para agentes de ventas
+- 👤 **Gestión de clientes** - Operaciones CRUD para clientes
+- 🔧 **Catálogo de servicios** - Administración de servicios por categoría (Ventas, Finanzas, Seguros, Postventa)
+- 🔄 **Orquestación** - Operaciones complejas que combinan varios servicios
+- 📚 **Swagger/OpenAPI** - Documentación interactiva de la API
+- 🧪 **Pruebas** - Pruebas unitarias con Jest
+- 🐳 **Docker** - Despliegue en contenedores
+- 🔒 **Seguridad** - Helmet, CORS y validación de entrada
 
-## Technical Documentation
+## Documentación técnica
 
-See [DOCUMENTACION.md](DOCUMENTACION.md) for a detailed reference of every class, method, error code, and request flow.
+Consulta [DOCUMENTACION.md](DOCUMENTACION.md) para una referencia detallada de cada clase, método, código de error y flujo de petición.
 
-## Quick Start
+## Inicio rápido
 
-### Prerequisites
+### Requisitos previos
 - Node.js 20+
-- Vehicle Domain Service running on port 8083
-- Catalog Service running on port 8082
+- Vehicle Domain Service ejecutándose en el puerto 8083
+- Catalog Service ejecutándose en el puerto 8082
 
-### Installation
+### Instalación
 
 ```bash
 cd services/orchestrator-service
@@ -36,93 +36,93 @@ cp .env.example .env
 npm run dev
 ```
 
-### Environment Variables
+### Variables de entorno
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| PORT | 8084 | Server port |
-| NODE_ENV | development | Environment |
-| VEHICLE_SERVICE_URL | http://localhost:8083 | Vehicle service URL |
-| CATALOG_SERVICE_URL | http://localhost:8082 | Catalog service URL |
-| CORS_ORIGIN | http://localhost:4200 | CORS allowed origin |
-| LOG_LEVEL | info | Logging level |
+| Variable | Valor por defecto | Descripción |
+|----------|-------------------|-------------|
+| PORT | 8084 | Puerto del servidor |
+| NODE_ENV | development | Entorno de ejecución |
+| VEHICLE_SERVICE_URL | http://localhost:8083 | URL del servicio de vehículos |
+| CATALOG_SERVICE_URL | http://localhost:8082 | URL del servicio de catálogo |
+| CORS_ORIGIN | http://localhost:4200 | Origen permitido por CORS |
+| LOG_LEVEL | info | Nivel de logging |
 
-## API Endpoints
+## Endpoints de la API
 
-### Vehicles (`/api/vehicles`)
-- `GET /` - List vehicles with pagination and filters
-- `GET /available` - Get available vehicles
-- `GET /brand/:brand` - Get vehicles by brand
-- `GET /price-range` - Get vehicles by price range
-- `GET /:id` - Get vehicle by ID
+### Vehículos (`/api/vehicles`)
+- `GET /` - Lista vehículos con paginación y filtros
+- `GET /available` - Obtiene los vehículos disponibles
+- `GET /brand/:brand` - Obtiene vehículos por marca
+- `GET /price-range` - Obtiene vehículos por rango de precio
+- `GET /:id` - Obtiene un vehículo por su ID
 
-### Agents (`/api/agents`)
-- `GET /` - List agents with pagination and filters
-- `GET /active` - Get active agents
-- `GET /specialization/:specialization` - Get agents by specialization
-- `GET /:id` - Get agent by ID
-- `GET /email/:email` - Get agent by email
-- `POST /` - Create agent
-- `PUT /:id` - Update agent
-- `DELETE /:id` - Delete agent
-- `PATCH /:id/deactivate` - Deactivate agent
+### Agentes (`/api/agents`)
+- `GET /` - Lista agentes con paginación y filtros
+- `GET /active` - Obtiene los agentes activos
+- `GET /specialization/:specialization` - Obtiene agentes por especialidad
+- `GET /:id` - Obtiene un agente por su ID
+- `GET /email/:email` - Obtiene un agente por su correo electrónico
+- `POST /` - Crea un agente
+- `PUT /:id` - Actualiza un agente
+- `DELETE /:id` - Elimina un agente
+- `PATCH /:id/deactivate` - Desactiva un agente
 
-### Customers (`/api/customers`)
-- `GET /` - List customers with pagination and filters
-- `GET /active` - Get active customers
-- `GET /search` - Search customers by name
-- `GET /:id` - Get customer by ID
-- `GET /email/:email` - Get customer by email
-- `POST /` - Create customer
-- `PUT /:id` - Update customer
-- `DELETE /:id` - Delete customer
-- `PATCH /:id/deactivate` - Deactivate customer
+### Clientes (`/api/customers`)
+- `GET /` - Lista clientes con paginación y filtros
+- `GET /active` - Obtiene los clientes activos
+- `GET /search` - Busca clientes por nombre
+- `GET /:id` - Obtiene un cliente por su ID
+- `GET /email/:email` - Obtiene un cliente por su correo electrónico
+- `POST /` - Crea un cliente
+- `PUT /:id` - Actualiza un cliente
+- `DELETE /:id` - Elimina un cliente
+- `PATCH /:id/deactivate` - Desactiva un cliente
 
-### Services (`/api/services`)
-- `GET /` - List services with pagination and filters
-- `GET /active` - Get active services
-- `GET /category/:category` - Get services by category
-- `GET /sales` - Get sales services
-- `GET /finance` - Get finance services
-- `GET /insurance` - Get insurance services
-- `GET /post-sale` - Get post-sale services
-- `GET /:id` - Get service by ID
-- `GET /code/:code` - Get service by code
-- `POST /` - Create service
-- `PUT /:id` - Update service
-- `DELETE /:id` - Delete service
-- `PATCH /:id/deactivate` - Deactivate service
+### Servicios (`/api/services`)
+- `GET /` - Lista servicios con paginación y filtros
+- `GET /active` - Obtiene los servicios activos
+- `GET /category/:category` - Obtiene servicios por categoría
+- `GET /sales` - Obtiene servicios de ventas
+- `GET /finance` - Obtiene servicios de finanzas
+- `GET /insurance` - Obtiene servicios de seguros
+- `GET /post-sale` - Obtiene servicios de postventa
+- `GET /:id` - Obtiene un servicio por su ID
+- `GET /code/:code` - Obtiene un servicio por su código
+- `POST /` - Crea un servicio
+- `PUT /:id` - Actualiza un servicio
+- `DELETE /:id` - Elimina un servicio
+- `PATCH /:id/deactivate` - Desactiva un servicio
 
-### Orchestration (`/api/orchestration`)
-- `GET /vehicle/:id` - Get vehicle with agent and services
-- `GET /customer/:id` - Get customer with agent, vehicles, services
-- `POST /sales/prepare` - Prepare sales process
-- `GET /dashboard` - Get dashboard statistics
-- `GET /health` - Health check of downstream services (via `/actuator/health`)
+### Orquestación (`/api/orchestration`)
+- `GET /vehicle/:id` - Obtiene un vehículo con su agente y servicios
+- `GET /customer/:id` - Obtiene un cliente con su agente, vehículos y servicios
+- `POST /sales/prepare` - Prepara el proceso de venta
+- `GET /dashboard` - Obtiene las estadísticas del panel
+- `GET /health` - Comprueba la salud de los servicios dependientes (vía `/actuator/health`)
 
-> **Two health endpoints:** `GET /health` reports the orchestrator process itself; `GET /api/orchestration/health` checks the Vehicle and Catalog services through Spring Boot Actuator and returns `503` if either is down.
+> **Dos endpoints de salud:** `GET /health` reporta el estado del propio proceso orquestador; `GET /api/orchestration/health` comprueba los servicios Vehicle y Catalog mediante Spring Boot Actuator y devuelve `503` si alguno está caído.
 
-## Swagger Documentation
+## Documentación Swagger
 
-Access interactive API docs at: `http://localhost:8084/api-docs`
+Accede a la documentación interactiva de la API en: `http://localhost:8084/api-docs`
 
-## Testing
+## Pruebas
 
 ```bash
-# Run all tests with coverage
+# Ejecuta todas las pruebas con cobertura
 npm test
 
-# Run unit tests only
+# Ejecuta solo las pruebas unitarias
 npm run test:unit
 
-# Run integration tests only
+# Ejecuta solo las pruebas de integración
 npm run test:integration
 
-# Watch mode
+# Modo watch
 npm run test:watch
 ```
 
-## Building
+## Compilación
 
 ```bash
 npm run build
@@ -132,34 +132,34 @@ npm start
 ## Docker
 
 ```bash
-# Build image
+# Construye la imagen
 docker build -t orchestrator-service .
 
-# Run container
+# Ejecuta el contenedor
 docker run -p 8084:8084 \
   -e VEHICLE_SERVICE_URL=http://host.docker.internal:8083 \
   -e CATALOG_SERVICE_URL=http://host.docker.internal:8082 \
   orchestrator-service
 ```
 
-## Project Structure
+## Estructura del proyecto
 
 ```
 src/
-├── config/           # Configuration files
-├── controllers/      # Request handlers
-├── middleware/       # Express middleware
-├── routes/           # Route definitions
-├── services/         # Business logic
-├── types/            # TypeScript types
-├── utils/            # Utilities (HTTP client, logger)
-├── tests/            # Test files
-│   ├── unit/         # Unit tests
-│   └── integration/  # Integration tests
-└── index.ts          # Application entry point
+├── config/           # Archivos de configuración
+├── controllers/      # Manejadores de peticiones
+├── middleware/       # Middleware de Express
+├── routes/           # Definición de rutas
+├── services/         # Lógica de negocio
+├── types/            # Tipos de TypeScript
+├── utils/            # Utilidades (cliente HTTP, logger)
+├── tests/            # Archivos de pruebas
+│   ├── unit/         # Pruebas unitarias
+│   └── integration/  # Pruebas de integración
+└── index.ts          # Punto de entrada de la aplicación
 ```
 
-## Architecture
+## Arquitectura
 
 ```
 ┌─────────────────┐     ┌──────────────────┐
@@ -177,6 +177,6 @@ src/
        └─────────────┘   └──────────────┘   └─────────────┘
 ```
 
-## License
+## Licencia
 
 MIT
